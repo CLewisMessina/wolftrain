@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+env/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Checkpoints and Outputs
+wolftrain-checkpoints/
+wolftrain-output/
+
+# IDE Configs (optional, depending if you want to ignore)
+.vscode/
+.idea/
+
+# Others (optional)
+*.log
+*.tmp

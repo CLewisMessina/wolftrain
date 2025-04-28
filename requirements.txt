@@ -1,0 +1,65 @@
+# ===============================================================
+# Wolftrain - Local LoRA Fine-Tuning Tool (MVP v0.2 - GPU Ready)
+# ===============================================================
+
+# ===============================================================
+# GUI Dependencies
+# ===============================================================
+
+# ttkbootstrap: Modern themed wrapper for Tkinter
+# Used to build the visual interface easily
+ttkbootstrap>=1.10.1
+
+# ===============================================================
+# Core Python Libraries (bundled)
+# ===============================================================
+# tkinter, os, time: come standard with Python 3.x
+# No need to list unless packaging for frozen apps
+
+
+# ===============================================================
+# Machine Learning Core Dependencies
+# ===============================================================
+# transformers: Hugging Face Transformers library
+# Provides model architectures, tokenization, and training utilities
+# Core library for working with LLMs and supporting LoRA fine-tuning
+transformers>=4.39.3
+
+# peft: Parameter-Efficient Fine-Tuning library
+# Core library for LoRA functionality and adapter-based fine-tuning
+peft>=0.10.0
+
+# datasets: Hugging Face datasets library
+# Used for loading, processing, and working with training datasets
+datasets>=2.18.0
+
+# ===============================================================
+# Deep Learning Framework (Install Separately by CUDA Version)
+# ===============================================================
+# torch: PyTorch deep learning framework
+# DO NOT install here directly if using GPU.
+# Instead, install manually after setting up venv:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+# ===============================================================
+# Installation Notes
+# ===============================================================
+
+# 1. Install Python 3.10 (if not already installed)
+# 2. Create a virtual environment
+#    python3.10 -m venv venv-310
+#
+# 3. Activate the virtual environment
+#    .\venv-310\Scripts\activate
+#
+# 4. Upgrade pip
+#    python -m pip install --upgrade pip
+#
+# 5. Install core dependencies
+#    pip install -r requirements.txt
+#
+# 6. Install GPU-accelerated PyTorch manually
+#    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#
+# 7. Launch Wolftrain!
+
