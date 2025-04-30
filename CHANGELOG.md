@@ -1,21 +1,20 @@
 # 🐺 Wolftrain Changelog
 
-## [0.1.0-alpha] — 2024-04-28
+## [0.2.0-beta] — 2025-04-29
 
 ### Added
-- Basic GUI layout with ttkbootstrap
-- Project selection and dataset selection
-- TXT and CSV dataset loading
-- Fine-tuning workflow with Hugging Face + PEFT
-- GPU and CPU automatic detection
-- Dataset validation (TXT/CSV)
-- Local model saving after training
-- Local test script for model outputs
-- Base model vs fine-tuned model comparison script
+- Dataset preview popup (for both .txt and .csv)
+- Live training loss display during training
+- Configurable training parameters (epochs, batch size, learning rate)
+- Clear console button in GUI
+- Enhanced CSV structure validation (detect malformed rows or quoting issues)
+
+### Changed
+- GUI polish with dynamic form entries and ttkbootstrap styling
+- Training callback now displays loss per step via `TrainerCallback`
 
 ### Known Upcoming Features
-- Dataset preview and column selector
-- Live loss tracking during training
-- Configurable training parameters (batch size, learning rate, epochs)
+- CSV column selector (if multiple fields detected)
 - Hugging Face model browsing inside app
-- Ollama export-ready model saving
+- Adapter-only saving (for smaller outputs)
+- Export-ready format for tools like Ollama

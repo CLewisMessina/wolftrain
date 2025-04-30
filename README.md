@@ -4,44 +4,45 @@
 
 Wolftrain is a lightweight desktop application that empowers developers to fine-tune language models locally — using their own datasets, without cloud dependencies.
 
-Built for privacy, speed, and control, Wolftrain currently supports text and CSV dataset formats, GPU acceleration, and private model saving — with more features rapidly evolving.
+Built for privacy, speed, and control, Wolftrain supports text and CSV dataset formats, GPU acceleration, and private model saving — all from a simple GUI.
 
 ---
 
 ## 🚀 Project Status
 
-⚡ **Active Alpha Development**  
-This is an early working version of Wolftrain.  
-It can already fine-tune models locally, but feature enhancements and polish are ongoing.
-
-Follow the repo for continuous improvements!
+🔧 **Beta Preview**  
+Wolftrain is now feature-complete for its first open-source release.  
+More capabilities and polish are still evolving, but the core loop is solid.
 
 ---
 
-## 🎯 Features (Current)
+## 🎯 Features
 
 - ✅ Fine-tune Hugging Face models locally
 - ✅ GPU and CPU support
 - ✅ Train on `.txt` or `.csv` datasets
-- ✅ Automatic dataset validation (prevent training crashes)
-- ✅ Model saving for private use
-- ✅ Local test harness to evaluate fine-tuned models
+- ✅ Dataset validation with clear errors
+- ✅ Dataset preview popup (view first 5 rows before training)
+- ✅ Live training loss tracking (shown in console)
+- ✅ Set training settings (epochs, batch size, learning rate)
+- ✅ Local model saving after training
+- ✅ Local test script to compare base vs. fine-tuned output
+- ✅ Clear training console between runs
 
 ---
 
-## 🧠 Features Coming Soon
+## 🧠 Planned Features
 
-- Dataset preview and column selection for CSVs
-- Live training loss tracking
-- Advanced training settings (batch size, learning rate, epochs)
-- Adapter-only saving and model merging
-- Local model browser and downloader
+- CSV column selector (for multi-column training sets)
+- Hugging Face model browser (search + download from UI)
+- Adapter-only saving for smaller outputs
+- Export support for Ollama-compatible formats
 
 ---
 
 ## 📋 Quickstart
 
-```bash
+
 # 1. Clone the repo
 git clone https://github.com/yourusername/wolftrain.git
 cd wolftrain
@@ -55,34 +56,3 @@ pip install -r requirements.txt
 
 # 4. Run Wolftrain
 python main.py
-```
-
----
-
-## 📂 Project Structure
-
-```plaintext
-wolftrain/
-├── assets/           # App icons and images
-├── datasets/         # User datasets (TXT or CSV)
-├── training/         # Training logic (LoRA fine-tuning engine)
-├── ui/               # GUI components
-├── main.py           # App launcher
-├── controller.py     # Backend coordination
-├── requirements.txt  # Dependencies
-├── README.md         # Project overview (this file)
-└── CHANGELOG.md      # Version history
-```
-
----
-
-## 🛡️ License
-
-Currently shared for educational and early development purposes.  
-Full licensing and usage guidelines will be finalized upon stable release.
-
----
-
-## 💬 Built By
-
-A developer passionate about creating open, private, empowering AI tools — one step at a time.

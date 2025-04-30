@@ -1,5 +1,0 @@
-The quick brown fox jumps over the lazy dog.
-Wolftrain lets developers fine-tune AI models locally.
-Artificial intelligence is reshaping the future.
-Training models should be accessible to everyone.
-Short and simple datasets are great for testing workflows.
