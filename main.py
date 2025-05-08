@@ -1,17 +1,20 @@
 # main.py
-from tkinterdnd2 import TkinterDnD  # New import
+from tkinterdnd2 import TkinterDnD
 import ttkbootstrap as ttkb
 from ttkbootstrap.constants import *
 import tkinter as tk
 from ui.app_frame import AppFrame
-from ui.styles import apply_hover_style
+from ui.styles import apply_hover_style, apply_radio_styles  # Added radio styles
 
 def main():
-    # Use TkinterDnD-capable root window
     root = TkinterDnD.Tk()
     style = ttkb.Style(theme="simplex")
+
+    # Apply both hover button and radio button styles
     apply_hover_style(style)
-    style.master = root  # Link ttkbootstrap theme to the root window
+    apply_radio_styles(style)
+
+    style.master = root  # Link theme to the main root
 
     root.title("Wolftrain")
     root.geometry("800x600")
@@ -20,7 +23,7 @@ def main():
     try:
         root.iconphoto(False, tk.PhotoImage(file="assets/wolftrain-icon.png"))
     except:
-        pass  # fallback silently if no icon found
+        pass  # Fallback silently if icon is missing
 
     frame = AppFrame(root)
     frame.pack(fill=BOTH, expand=YES)

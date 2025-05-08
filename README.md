@@ -3,7 +3,7 @@
 **Local LoRA Fine-Tuning, Evolved.**  
 Part of the [Wolflow](https://wolflow.ai) ecosystem • Built by [Christopher Messina](https://github.com/CLewisMessina)
 
-> Now with a scrollable, icon-based interface and GPU acceleration support.
+> Now with a scrollable, icon-based interface, rainbow-coded learning rate presets, and GPU acceleration support.
 
 ---
 
@@ -23,9 +23,10 @@ Built for privacy, speed, and control, it bridges the gap between raw data and c
 - 🔥 **GPU acceleration** – Automatic CUDA detection and utilization
 - 📊 **Multiple dataset formats** – Support for `.txt` and `.csv` training files
 - ✂️ **LoRA adaptation** – Efficient parameter updates with minimal resources
+- 🎛️ **Learning rate presets** – Visual, color-coded suggestions for tuning safety and speed
 - 🔍 **Live training metrics** – Real-time loss tracking and progress updates
 - 🧩 **Drag-and-drop support** – Drop your datasets directly into the app
-- 🖼️ **Icon-based controls** – Red-hover buttons and tool-aligned layout
+- 🖼️ **Icon-based controls** – Lucide icons with red-hover style buttons
 - 🧭 **Scrollable layout** – Modern structure for responsive UIs
 - 📈 **Model comparison tool** – Compare base vs. fine-tuned outputs
 - ❌ **Private by design** – Fully local processing with no cloud dependencies
@@ -82,7 +83,7 @@ python main.py
 
 1. **Select Model** – Choose a base Hugging Face model to fine-tune
 2. **Select Dataset** – Upload your training data (TXT or CSV format)
-3. **Configure** – Set epochs, batch size, and learning rate
+3. **Configure** – Set epochs, batch size, and learning rate (or choose a preset)
 4. **Train** – Launch training with live progress updates
 5. **Test** – Use comparison tools to evaluate your fine-tuned model
 
@@ -117,6 +118,7 @@ python main.py
 - [x] Live training metrics
 - [x] GPU acceleration
 - [x] Scrollable interface with icons and drag-and-drop
+- [x] Learning rate presets with visual styling
 - [ ] CSV column selector for multi-column datasets
 - [ ] Hugging Face model browser (search + download from UI)
 - [ ] Adapter-only saving for smaller outputs

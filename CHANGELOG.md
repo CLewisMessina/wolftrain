@@ -1,19 +1,17 @@
 # 🐺 Wolftrain Changelog
 
-## [0.3.0-beta] — 2025-05-08
+## [0.3.1-beta] — 2025-05-08
 
 ### Added
-- Scrollable, canvas-based layout with mousewheel support
-- Red-hover button styling via shared `Hover.TButton` style
-- Icon-based buttons using Lucide-style PNGs
-- Drag-and-drop support for datasets (.txt and .csv)
-- Section headers for clearer UX structure
+- Learning Rate Preset system with beginner-friendly options
+- Rainbow-coded `Radiobuttons` with Lucide icons (e.g., flame, shield, zap)
+- Auto-fill behavior to update the learning rate field when a preset is clicked
 
 ### Changed
-- Replaced static frame layout with dynamic, responsive UI
-- Refactored `main.py` to initialize ttkbootstrap + drag-and-drop root window
-- Reorganized buttons and labels to match Wolflow UI standards
+- Replaced emoji-based labels with icon + text layout for better alignment and visual clarity
+- Tightened UI spacing and layout in the Training Settings section
 
+---
 
 ## [0.2.0-beta] — 2025-04-29
 

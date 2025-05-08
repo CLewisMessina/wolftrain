@@ -4,7 +4,7 @@ import csv
 import tkinter as tk
 from tkinter import filedialog, messagebox, Toplevel, Text, PhotoImage
 from tkinterdnd2 import DND_FILES
-from ttkbootstrap import Frame, Label, Button, Entry, Scrollbar
+from ttkbootstrap import Frame, Label, Button, Entry, Scrollbar, Radiobutton
 from ttkbootstrap.constants import *
 from controller import (
     set_base_model,
@@ -43,7 +43,14 @@ class AppFrame(Frame):
             "dataset": self.icon("icon-dataset-select.png"),
             "dataset_clear": self.icon("icon-dataset-clear.png"),
             "train": self.icon("icon-train-start.png"),
-            "clear_console": self.icon("icon-console-clear.png")
+            "clear_console": self.icon("icon-console-clear.png"),
+            # Preset Icons
+            "lr_risky": self.icon("icon-lr-flame.png"),
+            "lr_fast": self.icon("icon-lr-zap.png"),
+            "lr_safe": self.icon("icon-lr-safe.png"),
+            "lr_careful": self.icon("icon-lr-careful.png"),
+            "lr_low": self.icon("icon-lr-low.png"),
+            "lr_nano": self.icon("icon-lr-nano.png")
         }
 
         content = self.scrollable_frame
@@ -77,13 +84,29 @@ class AppFrame(Frame):
         self.batch_size_entry = self._create_labeled_entry(content, "Batch Size:", "4")
         self.learning_rate_entry = self._create_labeled_entry(content, "Learning Rate:", "5e-4")
 
+        Label(content, text="Presets:").pack(anchor="w", padx=20, pady=(4, 0))
+        self.lr_preset_var = tk.StringVar()
+        self.lr_presets = {
+            "5e-3 — Risky Fast": ("5e-3", "Red.TRadiobutton", self.icons["lr_risky"]),
+            "1e-3 — Faster Tuning": ("1e-3", "Orange.TRadiobutton", self.icons["lr_fast"]),
+            "5e-4 — Safe Default": ("5e-4", "Green.TRadiobutton", self.icons["lr_safe"]),
+            "1e-4 — Very Careful": ("1e-4", "Blue.TRadiobutton", self.icons["lr_careful"]),
+            "5e-5 — Very Low": ("5e-5", "Indigo.TRadiobutton", self.icons["lr_low"]),
+            "1e-5 — Nano Steps": ("1e-5", "Violet.TRadiobutton", self.icons["lr_nano"])
+        }
+
+        for label, (value, style, icon) in self.lr_presets.items():
+            rb = Radiobutton(content, text=label, variable=self.lr_preset_var,
+                            value=value, style=style, image=icon, compound="left",
+                            command=lambda v=value: self.learning_rate_entry.delete(0, "end") or self.learning_rate_entry.insert(0, v))
+            rb.pack(anchor="w", padx=30)
+
         Button(content, image=self.icons["train"], text=" Start Training", compound="left",
                command=self.start_training, style="Hover.TButton").pack(fill=X, padx=10, pady=(10, 16))
 
         self.progress_bar = tk.ttk.Progressbar(content, maximum=100)
         self.progress_bar.pack(fill=X, padx=10, pady=(0, 16))
 
-        # === Console Section ===
         Label(content, text="Training Console", font=("Arial", 16, "bold")).pack(anchor="w", padx=10)
 
         Button(content, image=self.icons["clear_console"], text=" Clear Console", compound="left",
