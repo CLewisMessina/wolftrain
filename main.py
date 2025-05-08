@@ -1,22 +1,31 @@
 # main.py
+from tkinterdnd2 import TkinterDnD  # New import
 import ttkbootstrap as ttkb
 from ttkbootstrap.constants import *
+import tkinter as tk
 from ui.app_frame import AppFrame
-import tkinter as tk  # <-- Added to handle the app icon
+from ui.styles import apply_hover_style
 
 def main():
-    app = ttkb.Window(themename="simplex")  # or "flatly", "minty", etc.
-    app.title("Wolftrain")
-    app.geometry("800x600")
-    app.minsize(600, 400)
-    
-    # Set custom wolfkit app icon
-    app.iconphoto(False, tk.PhotoImage(file="assets/wolftrain-icon.png"))
+    # Use TkinterDnD-capable root window
+    root = TkinterDnD.Tk()
+    style = ttkb.Style(theme="simplex")
+    apply_hover_style(style)
+    style.master = root  # Link ttkbootstrap theme to the root window
 
-    frame = AppFrame(app)
+    root.title("Wolftrain")
+    root.geometry("800x600")
+    root.minsize(600, 400)
+
+    try:
+        root.iconphoto(False, tk.PhotoImage(file="assets/wolftrain-icon.png"))
+    except:
+        pass  # fallback silently if no icon found
+
+    frame = AppFrame(root)
     frame.pack(fill=BOTH, expand=YES)
 
-    app.mainloop()
+    root.mainloop()
 
 if __name__ == "__main__":
     main()
