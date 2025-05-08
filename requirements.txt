@@ -1,5 +1,5 @@
 # ===============================================================
-# Wolftrain - Local LoRA Fine-Tuning Tool (MVP v0.2 - GPU Ready)
+# Wolftrain - Local LoRA Fine-Tuning Tool (MVP v0.3 - Scrollable UI, GPU Ready)
 # ===============================================================
 
 # ===============================================================
@@ -9,6 +9,9 @@
 # ttkbootstrap: Modern themed wrapper for Tkinter
 # Used to build the visual interface easily
 ttkbootstrap>=1.10.1
+
+# tkinterdnd2: Drag-and-drop support for Tkinter
+tkinterdnd2>=0.3.0
 
 # ===============================================================
 # Core Python Libraries (bundled)
@@ -62,4 +65,3 @@ datasets>=2.18.0
 #    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 #
 # 7. Launch Wolftrain!
-
