@@ -4,8 +4,9 @@ import csv
 import tkinter as tk
 from tkinter import filedialog, messagebox, Toplevel, Text, PhotoImage
 from tkinterdnd2 import DND_FILES
-from ttkbootstrap import Frame, Label, Button, Entry, Scrollbar, Radiobutton
+from ttkbootstrap import Frame, Label, Button, Entry, Scrollbar
 from ttkbootstrap.constants import *
+
 from controller import (
     set_base_model,
     set_dataset,
@@ -13,6 +14,8 @@ from controller import (
     clear_dataset,
     start_training
 )
+
+from ui.widgets.preset_radio_group import PresetRadioGroup
 
 MAX_DATASET_SIZE_BYTES = 1 * 1024 * 1024 * 1024  # 1GB
 
@@ -25,7 +28,6 @@ class AppFrame(Frame):
         self.scrollable_frame = Frame(self.canvas, padding=(20, 10))
 
         self.scrollable_frame.bind("<Configure>", lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")))
-
         self.canvas_frame = self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw", width=750)
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
 
@@ -44,7 +46,6 @@ class AppFrame(Frame):
             "dataset_clear": self.icon("icon-dataset-clear.png"),
             "train": self.icon("icon-train-start.png"),
             "clear_console": self.icon("icon-console-clear.png"),
-            # Preset Icons
             "lr_risky": self.icon("icon-lr-flame.png"),
             "lr_fast": self.icon("icon-lr-zap.png"),
             "lr_safe": self.icon("icon-lr-safe.png"),
@@ -57,7 +58,6 @@ class AppFrame(Frame):
 
         # === Model Selection Section ===
         Label(content, text="Model Selection", font=("Arial", 16, "bold")).pack(anchor="w", padx=10)
-
         self.base_model_label = Label(content, text="📦 No base model selected", anchor="w")
         self.base_model_label.pack(fill=X, padx=10, pady=(0, 10))
 
@@ -68,7 +68,6 @@ class AppFrame(Frame):
 
         # === Dataset Section ===
         Label(content, text="Dataset Upload", font=("Arial", 16, "bold")).pack(anchor="w", padx=10)
-
         self.dataset_label = Label(content, text="📁 No dataset selected", anchor="w")
         self.dataset_label.pack(fill=X, padx=10, pady=(0, 10))
 
@@ -85,21 +84,8 @@ class AppFrame(Frame):
         self.learning_rate_entry = self._create_labeled_entry(content, "Learning Rate:", "5e-4")
 
         Label(content, text="Presets:").pack(anchor="w", padx=20, pady=(4, 0))
-        self.lr_preset_var = tk.StringVar()
-        self.lr_presets = {
-            "5e-3 — Risky Fast": ("5e-3", "Red.TRadiobutton", self.icons["lr_risky"]),
-            "1e-3 — Faster Tuning": ("1e-3", "Orange.TRadiobutton", self.icons["lr_fast"]),
-            "5e-4 — Safe Default": ("5e-4", "Green.TRadiobutton", self.icons["lr_safe"]),
-            "1e-4 — Very Careful": ("1e-4", "Blue.TRadiobutton", self.icons["lr_careful"]),
-            "5e-5 — Very Low": ("5e-5", "Indigo.TRadiobutton", self.icons["lr_low"]),
-            "1e-5 — Nano Steps": ("1e-5", "Violet.TRadiobutton", self.icons["lr_nano"])
-        }
-
-        for label, (value, style, icon) in self.lr_presets.items():
-            rb = Radiobutton(content, text=label, variable=self.lr_preset_var,
-                            value=value, style=style, image=icon, compound="left",
-                            command=lambda v=value: self.learning_rate_entry.delete(0, "end") or self.learning_rate_entry.insert(0, v))
-            rb.pack(anchor="w", padx=30)
+        preset_group = PresetRadioGroup(content, self.learning_rate_entry, self.icons)
+        preset_group.pack(anchor="w", padx=20)
 
         Button(content, image=self.icons["train"], text=" Start Training", compound="left",
                command=self.start_training, style="Hover.TButton").pack(fill=X, padx=10, pady=(10, 16))
@@ -108,7 +94,6 @@ class AppFrame(Frame):
         self.progress_bar.pack(fill=X, padx=10, pady=(0, 16))
 
         Label(content, text="Training Console", font=("Arial", 16, "bold")).pack(anchor="w", padx=10)
-
         Button(content, image=self.icons["clear_console"], text=" Clear Console", compound="left",
                command=self.clear_console, style="Hover.TButton").pack(fill=X, padx=10, pady=(0, 6))
 
@@ -172,7 +157,6 @@ class AppFrame(Frame):
 
     def start_training(self):
         self.progress_bar['value'] = 0
-
         try:
             epochs = int(self.epochs_entry.get())
             batch_size = int(self.batch_size_entry.get())
